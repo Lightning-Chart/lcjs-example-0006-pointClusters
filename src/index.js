@@ -1,4 +1,4 @@
-/**
+/*
  * LightningChartJS example that showcases clusters of points.
  */
 // Import LightningChartJS

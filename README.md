@@ -1,4 +1,4 @@
-# Point clusters
+# Point Clusters
 
 This demo application belongs to the set of examples for LightningChart JS, data visualization library for JavaScript.
 
@@ -14,7 +14,8 @@ The demo can be used as an example or a seed project. Local execution requires t
 
 - The application is available at *http://localhost:8080* in your browser, webpack-dev-server provides hot reload functionality.
 
-### Description 
+
+## Description
 
 This example shows how to create clusters of differently colored points, how to get the boundaries of a series and use them to draw frames around each cluster.
 
@@ -45,18 +46,19 @@ const maxCorner = {
 
 The boundary rectangle is defined by two points in 2D space. The same methods are applicable to all the series as well as ***progressive series*** in any directions.
 
-### API links
 
-* XY cartesian chart: [ChartXY][]
-* Point series: [PointSeries][]
-* Rectangle series: [RectangleSeries][]
-* Color palettes: [ColorPalettes][]
-* Solid FillStyle: [SolidFill][]
-* Empty FillStyle: [emptyFill][]
-* Solid LineStyle: [SolidLine][]
+## API Links
+
+* XY cartesian chart: [ChartXY]
+* Point series: [PointSeries]
+* Rectangle series: [RectangleSeries]
+* Color palettes: [ColorPalettes]
+* Solid FillStyle: [SolidFill]
+* Empty FillStyle: [emptyFill]
+* Solid LineStyle: [SolidLine]
 
 
-### Support
+## Support
 
 If you notice an error in the example code, please open an issue on [GitHub][0] repository of the entire example.
 
@@ -68,18 +70,20 @@ If you think you found a bug in the LightningChart JavaScript library, please co
 
 Direct developer email support can be purchased through a [Support Plan][4] or by contacting sales@arction.com.
 
-© Arction Ltd 2009-2019. All rights reserved.
-
 [0]: https://github.com/Arction/
 [1]: https://www.arction.com/lightningchart-js-api-documentation/
 [2]: https://www.arction.com
 [3]: https://stackoverflow.com/questions/tagged/lightningchart
 [4]: https://www.arction.com/support-services/
 
-[ChartXY]: https://www.arction.com/lightningchart-js-api-documentation/v1.1.0/classes/chartxy.html
-[ColorPalettes]: https://www.arction.com/lightningchart-js-api-documentation/v1.1.0/globals.html#colorpalettes
-[emptyFill]: https://www.arction.com/lightningchart-js-api-documentation/v1.1.0/globals.html#emptyfill
-[PointSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.1.0/classes/pointseries.html
-[RectangleSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.1.0/classes/rectangleseries.html
-[SolidFill]: https://www.arction.com/lightningchart-js-api-documentation/v1.1.0/classes/solidfill.html
-[SolidLine]: https://www.arction.com/lightningchart-js-api-documentation/v1.1.0/classes/solidline.html
+© Arction Ltd 2009-2019. All rights reserved.
+
+
+[ChartXY]: https://www.arction.com/lightningchart-js-api-documentation/v1.2.0/classes/chartxy.html
+[PointSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.2.0/classes/pointseries.html
+[RectangleSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.2.0/classes/rectangleseries.html
+[ColorPalettes]: https://www.arction.com/lightningchart-js-api-documentation/v1.2.0/globals.html#colorpalettes
+[SolidFill]: https://www.arction.com/lightningchart-js-api-documentation/v1.2.0/classes/solidfill.html
+[emptyFill]: https://www.arction.com/lightningchart-js-api-documentation/v1.2.0/globals.html#emptyfill
+[SolidLine]: https://www.arction.com/lightningchart-js-api-documentation/v1.2.0/classes/solidline.html
+
