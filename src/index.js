@@ -17,8 +17,8 @@ const {
 
 // ----- Cache used styles -----
 const pointSize = 10
-const palette = ColorPalettes.arctionWarm(2)
-const colors = [0, 1].map(palette)
+const palette = ColorPalettes.fullSpectrum(10)
+const colors = [0, 6].map(palette)
 const fillStyles = colors.map(color => new SolidFill({ color }))
 // Decide on an origin for DateTime axis.
 const dateOrigin = new Date(2018, 8, 1)
