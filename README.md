@@ -28,7 +28,7 @@ The most efficient way to draw point cloud clusters is utilizing ***PointSeries*
 const cluster = chart.addPointSeries()
 ```
 
-#### Boundaries
+## Boundaries
 
 Each series automatically computes its boundaries based on the data input and configuration of a series. Get the boundaries in axis values using the following methods:
 
