@@ -51,13 +51,13 @@ The boundary rectangle is defined by two points in 2D space. The same methods ar
 
 ## API Links
 
-* XY cartesian chart: [ChartXY]
-* Point series: [PointSeries]
-* Rectangle series: [RectangleSeries]
-* Color palettes: [ColorPalettes]
-* Solid FillStyle: [SolidFill]
-* Empty FillStyle: [emptyFill]
-* Solid LineStyle: [SolidLine]
+* [XY cartesian chart]
+* [Point series]
+* [Rectangle series]
+* [Color palettes]
+* [Solid FillStyle]
+* [Empty FillStyle]
+* [Solid LineStyle]
 
 
 ## Support
@@ -81,11 +81,11 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[ChartXY]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/chartxy.html
-[PointSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/pointseries.html
-[RectangleSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/rectangleseries.html
-[ColorPalettes]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/globals.html#colorpalettes
-[SolidFill]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/solidfill.html
-[emptyFill]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/globals.html#emptyfill
-[SolidLine]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/solidline.html
+[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/chartxy.html
+[Point series]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/pointseries.html
+[Rectangle series]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/rectangleseries.html
+[Color palettes]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/globals.html#colorpalettes
+[Solid FillStyle]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/solidfill.html
+[Empty FillStyle]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/globals.html#emptyfill
+[Solid LineStyle]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/solidline.html
 

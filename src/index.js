@@ -12,7 +12,8 @@ const {
     ColorPalettes,
     emptyFill,
     AxisTickStrategies,
-    PointShape
+    PointShape,
+    Themes
 } = lcjs
 
 // ----- Cache used styles -----
@@ -25,12 +26,19 @@ const dateOrigin = new Date(2018, 8, 1)
 
 // Create a XY Chart.
 const chart = lightningChart().ChartXY({
-    defaultAxisXTickStrategy: AxisTickStrategies.DateTime(dateOrigin),
+    // theme: Themes.dark
 })
     .setTitle('Salary differences between Kuopio and Helsinki')
     .setPadding({
         right: 50
     })
+
+// Modify the default X Axis to use DateTime TickStrategy, and set the origin for the DateTime Axis.
+chart.getDefaultAxisX()
+    .setTickStrategy(
+        AxisTickStrategies.DateTime,
+        (tickStrategy) => tickStrategy.setDateOrigin(dateOrigin)
+    )
 
 // Add a series for each cluster of points
 const fstClusterSeries = chart.addPointSeries({ pointShape: PointShape.Circle })
