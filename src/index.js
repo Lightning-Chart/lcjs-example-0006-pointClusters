@@ -556,7 +556,7 @@ const drawCluster = (series, points) => {
     // Add points to specified series
     series.add(points.map(point => ({ x: point.x * dataFrequency, y: point.y })))
     // Cache top left corner of cluster area
-    series.setResultTableFormatter((builder, series, Xvalue, Yvalue) => {
+    series.setCursorResultTableFormatter((builder, series, Xvalue, Yvalue) => {
         return builder
             .addRow(`${series.getName()}`)
             .addRow('Date : ' + series.axisX.formatValue(Xvalue))
@@ -588,3 +588,8 @@ chart.setAutoCursor(cursor => (cursor)
     .setTickMarkerXAutoTextStyle(true)
     .setTickMarkerYAutoTextStyle(true)
 )
+
+// Finally, add LegendBox to chart.
+chart.addLegendBox()
+    .add(fstClusterSeries)
+    .add(sndClusterSeries)
