@@ -1,6 +1,6 @@
-# Point Clusters
+# JavaScript Point Clusters Chart
 
-![Point Clusters](pointClusters.png)
+![JavaScript Point Clusters Chart](pointClusters.png)
 
 This demo application belongs to the set of examples for LightningChart JS, data visualization library for JavaScript.
 
