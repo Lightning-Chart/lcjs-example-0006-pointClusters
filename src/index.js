@@ -16,17 +16,13 @@ const {
     Themes
 } = lcjs
 
-// ----- Cache used styles -----
 const pointSize = 10
-const palette = ColorPalettes.fullSpectrum(10)
-const colors = [0, 6].map(palette)
-const fillStyles = colors.map(color => new SolidFill({ color }))
 // Decide on an origin for DateTime axis.
 const dateOrigin = new Date(2018, 8, 1)
 
 // Create a XY Chart.
 const chart = lightningChart().ChartXY({
-    // theme: Themes.dark
+    // theme: Themes.darkGold
 })
     .setTitle('Salary differences between Kuopio and Helsinki')
     .setPadding({
@@ -43,11 +39,9 @@ chart.getDefaultAxisX()
 // Add a series for each cluster of points
 const fstClusterSeries = chart.addPointSeries({ pointShape: PointShape.Circle })
     .setName('Kuopio')
-    .setPointFillStyle(fillStyles[0])
     .setPointSize(pointSize)
 const sndClusterSeries = chart.addPointSeries({ pointShape: PointShape.Triangle })
     .setName('Helsinki')
-    .setPointFillStyle(fillStyles[1])
     .setPointSize(pointSize)
 
 // The point supplied to series will have their X values multiplied by this value (for easier addition of DateTime-values).
@@ -593,3 +587,8 @@ chart.setAutoCursor(cursor => (cursor)
 chart.addLegendBox()
     .add(fstClusterSeries)
     .add(sndClusterSeries)
+    // Dispose example UI elements automatically if they take too much space. This is to avoid bad UI on mobile / etc. devices.
+    .setAutoDispose({
+        type: 'max-width',
+        maxWidth: 0.30,
+    })
