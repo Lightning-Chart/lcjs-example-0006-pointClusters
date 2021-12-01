@@ -81,11 +81,11 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/chartxy.html
-[Point series]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/pointseries.html
-[Rectangle series]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/rectangleseries.html
-[Color palettes]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/globals.html#colorpalettes
-[Solid FillStyle]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/solidfill.html
-[Empty FillStyle]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/globals.html#emptyfill
-[Solid LineStyle]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/solidline.html
+[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v3.3.0/classes/chartxy.html
+[Point series]: https://www.arction.com/lightningchart-js-api-documentation/v3.3.0/classes/pointseries.html
+[Rectangle series]: https://www.arction.com/lightningchart-js-api-documentation/v3.3.0/classes/rectangleseries.html
+[Color palettes]: https://www.arction.com/lightningchart-js-api-documentation/v3.3.0/globals.html#colorpalettes
+[Solid FillStyle]: https://www.arction.com/lightningchart-js-api-documentation/v3.3.0/classes/solidfill.html
+[Empty FillStyle]: https://www.arction.com/lightningchart-js-api-documentation/v3.3.0/globals.html#emptyfill
+[Solid LineStyle]: https://www.arction.com/lightningchart-js-api-documentation/v3.3.0/classes/solidline.html
 
