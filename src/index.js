@@ -5,44 +5,28 @@
 const lcjs = require('@arction/lcjs')
 
 // Extract required parts from LightningChartJS.
-const {
-    lightningChart,
-    SolidFill,
-    SolidLine,
-    ColorPalettes,
-    emptyFill,
-    AxisTickStrategies,
-    PointShape,
-    Themes
-} = lcjs
+const { lightningChart, SolidFill, SolidLine, ColorPalettes, emptyFill, AxisTickStrategies, PointShape, Themes } = lcjs
 
 const pointSize = 10
 // Decide on an origin for DateTime axis.
 const dateOrigin = new Date(2018, 8, 1)
 
 // Create a XY Chart.
-const chart = lightningChart().ChartXY({
-    // theme: Themes.darkGold
-})
+const chart = lightningChart()
+    .ChartXY({
+        // theme: Themes.darkGold
+    })
     .setTitle('Salary differences between Kuopio and Helsinki')
     .setPadding({
-        right: 50
+        right: 50,
     })
 
 // Modify the default X Axis to use DateTime TickStrategy, and set the origin for the DateTime Axis.
-chart.getDefaultAxisX()
-    .setTickStrategy(
-        AxisTickStrategies.DateTime,
-        (tickStrategy) => tickStrategy.setDateOrigin(dateOrigin)
-    )
+chart.getDefaultAxisX().setTickStrategy(AxisTickStrategies.DateTime, (tickStrategy) => tickStrategy.setDateOrigin(dateOrigin))
 
 // Add a series for each cluster of points
-const fstClusterSeries = chart.addPointSeries({ pointShape: PointShape.Circle })
-    .setName('Kuopio')
-    .setPointSize(pointSize)
-const sndClusterSeries = chart.addPointSeries({ pointShape: PointShape.Triangle })
-    .setName('Helsinki')
-    .setPointSize(pointSize)
+const fstClusterSeries = chart.addPointSeries({ pointShape: PointShape.Circle }).setName('Kuopio').setPointSize(pointSize)
+const sndClusterSeries = chart.addPointSeries({ pointShape: PointShape.Triangle }).setName('Helsinki').setPointSize(pointSize)
 
 // The point supplied to series will have their X values multiplied by this value (for easier addition of DateTime-values).
 const dataFrequency = 1000 * 60 * 60 * 24
@@ -285,7 +269,7 @@ const kuopioPoints = [
     { x: 15.557729941291585, y: 3854.5673076923076 },
     { x: 12.32876712328767, y: 4174.278846153846 },
     { x: 11.859099804305282, y: 4115.384615384615 },
-    { x: 11.330724070450097, y: 3921.875 }
+    { x: 11.330724070450097, y: 3921.875 },
 ]
 
 const helsinkiPoints = [
@@ -523,32 +507,27 @@ const helsinkiPoints = [
     { x: 23.01369863013699, y: 2931.25 },
     { x: 29, y: 2931.25 },
     { x: 29, y: 2931.25 },
-    { x: 29, y: 2931.25 }
+    { x: 29, y: 2931.25 },
 ]
 
 // Create collection of rectangles which are going to be used as frame for clusters
-const rects = chart.addRectangleSeries()
-    .setCursorEnabled(false)
+const rects = chart.addRectangleSeries().setCursorEnabled(false)
 
 // Base style for strokes of frames. Line-FillStyle will be overridden per each cluster.
-const strokeStyle = new SolidLine()
-    .setThickness(2)
+const strokeStyle = new SolidLine().setThickness(2)
 
 // Setup view nicely.
-chart.getDefaultAxisX()
-    .setInterval(0 * dataFrequency, 30 * dataFrequency, true, true)
+chart.getDefaultAxisX().setInterval({ start: 0 * dataFrequency, end: 30 * dataFrequency, animate: true })
 
-chart.getDefaultAxisY()
-    .setTitle('Salary ($)')
-    .setInterval(1500, 6500, true, true)
+chart.getDefaultAxisY().setTitle('Salary ($)').setInterval({ start: 1500, end: 6500, animate: true })
 /**
-* Adds clusters of points to specified series and creates frames for them
-* @param {PointSeries} series Series which should hold the cluster
-* @return Function which receives a cluster of points
-*/
+ * Adds clusters of points to specified series and creates frames for them
+ * @param {PointSeries} series Series which should hold the cluster
+ * @return Function which receives a cluster of points
+ */
 const drawCluster = (series, points) => {
     // Add points to specified series
-    series.add(points.map(point => ({ x: point.x * dataFrequency, y: point.y })))
+    series.add(points.map((point) => ({ x: point.x * dataFrequency, y: point.y })))
     // Cache top left corner of cluster area
     series.setCursorResultTableFormatter((builder, series, Xvalue, Yvalue) => {
         return builder
@@ -561,12 +540,13 @@ const drawCluster = (series, points) => {
         y: series.getYMin(),
     }
     // Create frame around cluster
-    rects.add({
-        x: topLeftCorner.x,
-        y: topLeftCorner.y,
-        width: series.getXMax() - topLeftCorner.x,
-        height: series.getYMax() - topLeftCorner.y
-    })
+    rects
+        .add({
+            x: topLeftCorner.x,
+            y: topLeftCorner.y,
+            width: series.getXMax() - topLeftCorner.x,
+            height: series.getYMax() - topLeftCorner.y,
+        })
         // Disable filling of frame
         .setFillStyle(emptyFill)
         // Configure thickness and color of stroke via strokeStyle
@@ -577,18 +557,17 @@ drawCluster(fstClusterSeries, kuopioPoints)
 drawCluster(sndClusterSeries, helsinkiPoints)
 
 // Enable AutoCursor auto-fill.
-chart.setAutoCursor(cursor => (cursor)
-    .setResultTableAutoTextStyle(true)
-    .setTickMarkerXAutoTextStyle(true)
-    .setTickMarkerYAutoTextStyle(true)
+chart.setAutoCursor((cursor) =>
+    cursor.setResultTableAutoTextStyle(true).setTickMarkerXAutoTextStyle(true).setTickMarkerYAutoTextStyle(true),
 )
 
 // Finally, add LegendBox to chart.
-chart.addLegendBox()
+chart
+    .addLegendBox()
     .add(fstClusterSeries)
     .add(sndClusterSeries)
     // Dispose example UI elements automatically if they take too much space. This is to avoid bad UI on mobile / etc. devices.
     .setAutoDispose({
         type: 'max-width',
-        maxWidth: 0.30,
+        maxWidth: 0.3,
     })
