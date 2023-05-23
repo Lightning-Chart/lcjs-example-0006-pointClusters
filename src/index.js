@@ -22,14 +22,17 @@ const chart = lightningChart()
     })
 
 // Modify the default X Axis to use DateTime TickStrategy, and set the origin for the DateTime Axis.
-chart.getDefaultAxisX().setTickStrategy(AxisTickStrategies.DateTime, (tickStrategy) => tickStrategy.setDateOrigin(dateOrigin))
+chart.getDefaultAxisX()
+    .setTickStrategy(AxisTickStrategies.DateTime)
+    .setInterval({
+        start: new Date(2018, 7, 31).getTime(),
+        end: new Date(2018, 9, 1).getTime()
+    })
 
 // Add a series for each cluster of points
 const fstClusterSeries = chart.addPointSeries({ pointShape: PointShape.Circle }).setName('Kuopio').setPointSize(pointSize)
 const sndClusterSeries = chart.addPointSeries({ pointShape: PointShape.Triangle }).setName('Helsinki').setPointSize(pointSize)
 
-// The point supplied to series will have their X values multiplied by this value (for easier addition of DateTime-values).
-const dataFrequency = 1000 * 60 * 60 * 24
 const kuopioPoints = [
     { x: 12.152641878669275, y: 5335.336538461539 },
     { x: 11.62426614481409, y: 5259.615384615385 },
@@ -510,6 +513,21 @@ const helsinkiPoints = [
     { x: 29, y: 2931.25 },
 ]
 
+// Map the x values into timestamps
+let date = new Date(dateOrigin)
+const kuopioTimes = kuopioPoints.map(point => {
+    return {
+        x: date.setDate(dateOrigin.getDate() + point.x),
+        y: point.y
+    }
+})
+const helsinkiTimes = helsinkiPoints.map(point => {
+    return {
+        x: date.setDate(dateOrigin.getDate() + point.x),
+        y: point.y
+    }
+})
+
 // Create collection of rectangles which are going to be used as frame for clusters
 const rects = chart.addRectangleSeries().setCursorEnabled(false)
 
@@ -517,7 +535,6 @@ const rects = chart.addRectangleSeries().setCursorEnabled(false)
 const strokeStyle = new SolidLine().setThickness(2)
 
 // Setup view nicely.
-chart.getDefaultAxisX().setInterval({ start: 0 * dataFrequency, end: 30 * dataFrequency, animate: true })
 
 chart.getDefaultAxisY().setTitle('Salary ($)').setInterval({ start: 1500, end: 6500, animate: true })
 /**
@@ -527,7 +544,7 @@ chart.getDefaultAxisY().setTitle('Salary ($)').setInterval({ start: 1500, end: 6
  */
 const drawCluster = (series, points) => {
     // Add points to specified series
-    series.add(points.map((point) => ({ x: point.x * dataFrequency, y: point.y })))
+    series.add(points.map((point) => ({ x: point.x, y: point.y })))
     // Cache top left corner of cluster area
     series.setCursorResultTableFormatter((builder, series, Xvalue, Yvalue) => {
         return builder
@@ -553,12 +570,12 @@ const drawCluster = (series, points) => {
         .setStrokeStyle(strokeStyle.setFillStyle(series.getPointFillStyle()))
 }
 
-drawCluster(fstClusterSeries, kuopioPoints)
-drawCluster(sndClusterSeries, helsinkiPoints)
+drawCluster(fstClusterSeries, kuopioTimes)
+drawCluster(sndClusterSeries, helsinkiTimes)
 
 // Enable AutoCursor auto-fill.
 chart.setAutoCursor((cursor) =>
-    cursor.setResultTableAutoTextStyle(true).setTickMarkerXAutoTextStyle(true).setTickMarkerYAutoTextStyle(true),
+    cursor.setResultTableAutoTextStyle(true),
 )
 
 // Finally, add LegendBox to chart.

@@ -81,11 +81,11 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © LightningChart Ltd 2009-2022. All rights reserved.
 
 
-[XY cartesian chart]: https://lightningchart.com/lightningchart-js-api-documentation/v4.0.0/classes/ChartXY.html
-[Point series]: https://lightningchart.com/lightningchart-js-api-documentation/v4.0.0/classes/PointSeries.html
-[Rectangle series]: https://lightningchart.com/lightningchart-js-api-documentation/v4.0.0/classes/RectangleSeries.html
-[Color palettes]: https://lightningchart.com/lightningchart-js-api-documentation/v4.0.0/variables/ColorPalettes.html
-[Solid FillStyle]: https://lightningchart.com/lightningchart-js-api-documentation/v4.0.0/classes/SolidFill.html
-[Empty FillStyle]: https://lightningchart.com/lightningchart-js-api-documentation/v4.0.0/variables/emptyFill-1.html
-[Solid LineStyle]: https://lightningchart.com/lightningchart-js-api-documentation/v4.0.0/classes/SolidLine.html
+[XY cartesian chart]: https://lightningchart.com/lightningchart-js-api-documentation/v4.1.0/classes/ChartXY.html
+[Point series]: https://lightningchart.com/lightningchart-js-api-documentation/v4.1.0/classes/PointSeries.html
+[Rectangle series]: https://lightningchart.com/lightningchart-js-api-documentation/v4.1.0/classes/RectangleSeries.html
+[Color palettes]: https://lightningchart.com/lightningchart-js-api-documentation/v4.1.0/variables/ColorPalettes.html
+[Solid FillStyle]: https://lightningchart.com/lightningchart-js-api-documentation/v4.1.0/classes/SolidFill.html
+[Empty FillStyle]: https://lightningchart.com/lightningchart-js-api-documentation/v4.1.0/variables/emptyFill-1.html
+[Solid LineStyle]: https://lightningchart.com/lightningchart-js-api-documentation/v4.1.0/classes/SolidLine.html
 
