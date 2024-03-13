@@ -14,7 +14,7 @@ const dateOrigin = new Date(2018, 8, 1)
 // Create a XY Chart.
 const chart = lightningChart()
     .ChartXY({
-        theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
+        theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined
     })
     .setTitle('Salary differences between Kuopio and Helsinki')
     .setPadding({
