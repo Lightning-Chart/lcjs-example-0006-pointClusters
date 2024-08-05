@@ -2,7 +2,7 @@
  * LightningChartJS example that showcases clusters of points.
  */
 // Import LightningChartJS
-const lcjs = require('@arction/lcjs')
+const lcjs = require('@lightningchart/lcjs')
 
 // Extract required parts from LightningChartJS.
 const { lightningChart, SolidFill, SolidLine, ColorPalettes, emptyFill, AxisTickStrategies, PointShape, Themes } = lcjs
@@ -22,14 +22,13 @@ const chart = lightningChart({
     .setPadding({
         right: 50,
     })
+    .setCursorMode('show-nearest')
 
 // Modify the default X Axis to use DateTime TickStrategy, and set the origin for the DateTime Axis.
-chart.getDefaultAxisX()
-    .setTickStrategy(AxisTickStrategies.DateTime)
-    .setInterval({
-        start: new Date(2018, 7, 31).getTime(),
-        end: new Date(2018, 9, 1).getTime()
-    })
+chart.axisX.setTickStrategy(AxisTickStrategies.DateTime).setInterval({
+    start: new Date(2018, 7, 31).getTime(),
+    end: new Date(2018, 9, 1).getTime(),
+})
 
 // Add a series for each cluster of points
 const fstClusterSeries = chart.addPointSeries({ pointShape: PointShape.Circle }).setName('Kuopio').setPointSize(pointSize)
@@ -517,16 +516,16 @@ const helsinkiPoints = [
 
 // Map the x values into timestamps
 let date = new Date(dateOrigin)
-const kuopioTimes = kuopioPoints.map(point => {
+const kuopioTimes = kuopioPoints.map((point) => {
     return {
         x: date.setDate(dateOrigin.getDate() + point.x),
-        y: point.y
+        y: point.y,
     }
 })
-const helsinkiTimes = helsinkiPoints.map(point => {
+const helsinkiTimes = helsinkiPoints.map((point) => {
     return {
         x: date.setDate(dateOrigin.getDate() + point.x),
-        y: point.y
+        y: point.y,
     }
 })
 
@@ -538,7 +537,7 @@ const strokeStyle = new SolidLine().setThickness(2)
 
 // Setup view nicely.
 
-chart.getDefaultAxisY().setTitle('Salary ($)').setInterval({ start: 1500, end: 6500, animate: true })
+chart.axisY.setTitle('Salary').setUnits('€').setInterval({ start: 1500, end: 6500, animate: true })
 /**
  * Adds clusters of points to specified series and creates frames for them
  * @param {PointSeries} series Series which should hold the cluster
@@ -548,12 +547,6 @@ const drawCluster = (series, points) => {
     // Add points to specified series
     series.add(points.map((point) => ({ x: point.x, y: point.y })))
     // Cache top left corner of cluster area
-    series.setCursorResultTableFormatter((builder, series, Xvalue, Yvalue) => {
-        return builder
-            .addRow(`${series.getName()}`)
-            .addRow('Date : ' + series.axisX.formatValue(Xvalue))
-            .addRow('Salary : $' + Yvalue.toFixed(0))
-    })
     const topLeftCorner = {
         x: series.getXMin(),
         y: series.getYMin(),
@@ -574,11 +567,6 @@ const drawCluster = (series, points) => {
 
 drawCluster(fstClusterSeries, kuopioTimes)
 drawCluster(sndClusterSeries, helsinkiTimes)
-
-// Enable AutoCursor auto-fill.
-chart.setAutoCursor((cursor) =>
-    cursor.setResultTableAutoTextStyle(true),
-)
 
 // Finally, add LegendBox to chart.
 chart
