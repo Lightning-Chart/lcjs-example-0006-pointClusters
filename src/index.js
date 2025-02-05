@@ -5,7 +5,7 @@
 const lcjs = require('@lightningchart/lcjs')
 
 // Extract required parts from LightningChartJS.
-const { lightningChart, SolidFill, SolidLine, ColorPalettes, emptyFill, AxisTickStrategies, PointShape, Themes } = lcjs
+const { lightningChart, emptyLine, SolidLine, ColorPalettes, emptyFill, AxisTickStrategies, PointShape, Themes } = lcjs
 
 const pointSize = 10
 // Decide on an origin for DateTime axis.
@@ -19,9 +19,6 @@ const chart = lightningChart({
         theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
     })
     .setTitle('Salary differences between Kuopio and Helsinki')
-    .setPadding({
-        right: 50,
-    })
     .setCursorMode('show-nearest')
 
 // Modify the default X Axis to use DateTime TickStrategy, and set the origin for the DateTime Axis.
@@ -31,8 +28,16 @@ chart.axisX.setTickStrategy(AxisTickStrategies.DateTime).setInterval({
 })
 
 // Add a series for each cluster of points
-const fstClusterSeries = chart.addPointSeries({ pointShape: PointShape.Circle }).setName('Kuopio').setPointSize(pointSize)
-const sndClusterSeries = chart.addPointSeries({ pointShape: PointShape.Triangle }).setName('Helsinki').setPointSize(pointSize)
+const fstClusterSeries = chart
+    .addPointLineAreaSeries({ dataPattern: null, pointShape: PointShape.Circle })
+    .setName('Kuopio')
+    .setPointSize(pointSize)
+    .setStrokeStyle(emptyLine)
+const sndClusterSeries = chart
+    .addPointLineAreaSeries({ dataPattern: null, pointShape: PointShape.Triangle })
+    .setName('Helsinki')
+    .setPointSize(pointSize)
+    .setStrokeStyle(emptyLine)
 
 const kuopioPoints = [
     { x: 12.152641878669275, y: 5335.336538461539 },
