@@ -29,13 +29,15 @@ chart.axisX.setTickStrategy(AxisTickStrategies.DateTime).setInterval({
 
 // Add a series for each cluster of points
 const fstClusterSeries = chart
-    .addPointLineAreaSeries({ dataPattern: null, pointShape: PointShape.Circle })
+    .addPointSeries()
     .setName('Kuopio')
+    .setPointShape(PointShape.Circle)
     .setPointSize(pointSize)
     .setStrokeStyle(emptyLine)
 const sndClusterSeries = chart
-    .addPointLineAreaSeries({ dataPattern: null, pointShape: PointShape.Triangle })
+    .addPointLineAreaSeries()
     .setName('Helsinki')
+    .setPointShape(PointShape.Triangle)
     .setPointSize(pointSize)
     .setStrokeStyle(emptyLine)
 
@@ -535,7 +537,7 @@ const helsinkiTimes = helsinkiPoints.map((point) => {
 })
 
 // Create collection of rectangles which are going to be used as frame for clusters
-const rects = chart.addRectangleSeries().setCursorEnabled(false)
+const rects = chart.addRectangleSeries({ legend: { show: false } }).setCursorEnabled(false)
 
 // Base style for strokes of frames. Line-FillStyle will be overridden per each cluster.
 const strokeStyle = new SolidLine().setThickness(2)
@@ -550,7 +552,7 @@ chart.axisY.setTitle('Salary').setUnits('€').setInterval({ start: 1500, end: 6
  */
 const drawCluster = (series, points) => {
     // Add points to specified series
-    series.add(points.map((point) => ({ x: point.x, y: point.y })))
+    series.appendJSON(points.map((point) => ({ x: point.x, y: point.y })))
     // Cache top left corner of cluster area
     const topLeftCorner = {
         x: series.getXMin(),
@@ -572,14 +574,3 @@ const drawCluster = (series, points) => {
 
 drawCluster(fstClusterSeries, kuopioTimes)
 drawCluster(sndClusterSeries, helsinkiTimes)
-
-// Finally, add LegendBox to chart.
-chart
-    .addLegendBox()
-    .add(fstClusterSeries)
-    .add(sndClusterSeries)
-    // Dispose example UI elements automatically if they take too much space. This is to avoid bad UI on mobile / etc. devices.
-    .setAutoDispose({
-        type: 'max-width',
-        maxWidth: 0.3,
-    })
