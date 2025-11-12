@@ -35,7 +35,9 @@ const fstClusterSeries = chart
     .setPointSize(pointSize)
     .setStrokeStyle(emptyLine)
 const sndClusterSeries = chart
-    .addPointLineAreaSeries()
+    .addPointLineAreaSeries(
+      { automaticColorIndex: 4 }  
+    )
     .setName('Helsinki')
     .setPointShape(PointShape.Triangle)
     .setPointSize(pointSize)
